@@ -1,0 +1,12 @@
+.nav {
+  padding: 2rem 1rem;
+  display: flex;
+  justify-content: space-around;
+
+  & a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: tomato;
+    font-weight: 700;
+  }
+}
