@@ -1,22 +1,31 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 // UI-ROUTER
 import { UIRouterModule } from '@uirouter/angular';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { uiRouterConfigFn } from './config/router.config';
 
 // COMPONENTS
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
-import { AboutComponent } from './components/about/about.component';
+import { INITIAL_COMPONENTS } from './config/states';
 
 // STATES
-const homeState = { name: 'home', url: '/home', component: HomeComponent };
-const aboutState = { name: 'about', url: '/about', component: AboutComponent };
+import { INITIAL_STATES } from './config/states';
+import { PeopleComponent } from './components/people/people.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AboutComponent],
-  imports: [BrowserModule, UIRouterModule.forRoot({ states: [homeState, aboutState], useHash: true })],
+  declarations: [AppComponent, ...INITIAL_COMPONENTS, PeopleComponent],
+  imports: [
+    BrowserModule,
+    UIRouterModule.forRoot({
+      states: INITIAL_STATES,
+      useHash: true,
+      config: uiRouterConfigFn
+    }),
+    HttpClientModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
